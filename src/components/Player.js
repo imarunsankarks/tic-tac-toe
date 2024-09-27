@@ -4,7 +4,7 @@ const Player = ({ name, symbol }) => {
   const [pname, setPName] = useState(name);
   const [toggleName, setToggleName] = useState(true);
   const handleEdit = () => {
-    setToggleName(!toggleName);
+    setToggleName((toggle) => !toggle);
   };
   return (
     <li>
