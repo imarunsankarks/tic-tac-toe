@@ -9,13 +9,15 @@ const Gameboard = () => {
   const [change, setChange] = useState(true);
   const updateBoard = (i, j) => {
     const newBoard = boardVal.map((row) => [...row]);
-    if (change) {
-      newBoard[i][j] = "X";
-    } else {
-      newBoard[i][j] = "O";
+    if (!newBoard[i][j]) {
+      if (change) {
+        newBoard[i][j] = "X";
+      } else {
+        newBoard[i][j] = "O";
+      }
+      setBoardVal(newBoard);
+      setChange((val) => !val);
     }
-    setBoardVal(newBoard);
-    setChange((val) => !val);
   };
   return (
     <ol id="game-board">
