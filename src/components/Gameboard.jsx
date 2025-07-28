@@ -1,33 +1,32 @@
 import { useState } from "react";
-const board = [
+let board = [
   [null, null, null],
   [null, null, null],
   [null, null, null],
 ];
-const Gameboard = () => {
-  const [boardVal, setBoardVal] = useState(board);
-  const [change, setChange] = useState(true);
-  const updateBoard = (i, j) => {
-    const newBoard = boardVal.map((row) => [...row]);
-    if (!newBoard[i][j]) {
-      if (change) {
-        newBoard[i][j] = "X";
-      } else {
-        newBoard[i][j] = "O";
-      }
-      setBoardVal(newBoard);
-      setChange((val) => !val);
-    }
-  };
+const Gameboard = ({ gameTurns, activePlayer, playerToggle }) => {
+  gameTurns.length > 0 &&
+    gameTurns.forEach((val) => {
+      board[val.square["row"]][val.square["column"]] = val.player;
+    });
+  // const [boardVal, setBoardVal] = useState(board);
+  // const updateBoard = (i, j) => {
+  //   const newBoard = boardVal.map((row) => [...row]);
+  //   if (!newBoard[i][j]) {
+  //     newBoard[i][j] = activePlayer;
+  //     setBoardVal(newBoard);
+  //     playerToggle();
+  //   }
+  // };
   return (
     <ol id="game-board">
-      {boardVal.map((row, i) => {
+      {board.map((row, i) => {
         return (
           <li key={i}>
             <ol>
               {row.map((val, j) => (
                 <li key={j}>
-                  <button onClick={() => updateBoard(i, j)}>{val}</button>
+                  <button onClick={() => playerToggle(i, j)}>{val}</button>
                 </li>
               ))}
             </ol>

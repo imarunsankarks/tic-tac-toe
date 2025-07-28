@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-const Player = ({ name, symbol }) => {
+const Player = ({ name, symbol, activePlayer }) => {
   const [pname, setPName] = useState(name);
   const [toggleName, setToggleName] = useState(true);
   const handleEdit = () => {
     setToggleName((toggle) => !toggle);
   };
   return (
-    <li>
+    <li className={activePlayer ? "active" : null}>
       <span className="player">
         {!toggleName && (
           <input
