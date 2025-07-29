@@ -9,15 +9,7 @@ const Gameboard = ({ gameTurns, activePlayer, playerToggle }) => {
     gameTurns.forEach((val) => {
       board[val.square["row"]][val.square["column"]] = val.player;
     });
-  // const [boardVal, setBoardVal] = useState(board);
-  // const updateBoard = (i, j) => {
-  //   const newBoard = boardVal.map((row) => [...row]);
-  //   if (!newBoard[i][j]) {
-  //     newBoard[i][j] = activePlayer;
-  //     setBoardVal(newBoard);
-  //     playerToggle();
-  //   }
-  // };
+
   return (
     <ol id="game-board">
       {board.map((row, i) => {
